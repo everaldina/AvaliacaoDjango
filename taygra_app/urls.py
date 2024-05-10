@@ -6,11 +6,14 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('produto/<id_produto>', views.produto, name='produto'),
     path('contato/', views.contato, name='contato'),
-    path('informacao/', views.informacoes, name='informacoes'),
+    path('informacoes/', views.informacoes, name='informacoes'),
     path('tabela-tamanho/', views.tabela_tamanho, name='tabela-tamanho'),
     path('categorias/<id_categoria>', views.categorias, name='categorias'),
-    #path('form_produto/', views.form_produto, name ='form_produto'),
-    #path('form_usuario/', views.form_usuario, name='form_usuario'),
-    #path('login/', views.login, name='login')
+    path('login/', views.login, name='login'),
+    path('form_user/', views.form_user, name='form_user'),
+    path('logout/', views.logout, name='logout'),
+    path('newuser/', views.newuser, name='newuser'),
+    path('deluser/<id>', views.deluser, name='deluser'),
+    path('editperfil/', views.editperfil, name='editperfil'),
 
 ]

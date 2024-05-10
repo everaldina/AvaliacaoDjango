@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block conteudo %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-8">
+            <div class="card shadow p-3 p-sm-5 rounded">
+                <div class="card-body">
+                    <h3 class="text-center mb-4">Cadastro de Usuário</h3>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form.nome.id_for_label }}">Nome de usuário</label>
+                            {{ form.username }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.nome.id_for_label }}">Nome</label>
+                            {{ form.first_name }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.nome.id_for_label }}">Sobrenome</label>
+                            {{ form.last_name }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.CPF_CNPJ.id_for_label }}">CPF</label>
+                            {{ form.cpf }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}">Email</label>
+                            {{ form.email }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.senha.id_for_label }}">Senha</label>
+                            {{ form.password }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.telefone.id_for_label }}">Telefone</label>
+                            {{ form.telefone }}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock conteudo %}

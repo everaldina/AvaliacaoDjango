@@ -63,6 +63,8 @@ class Oferta(models.Model):
     
 class Usuario(User):
     nome = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=250, blank=True, null=True)
+    telefone = models.CharField(max_length=250, blank=True, null=True)
     is_inscrito = models.BooleanField(default=False)
     desejos = models.ManyToManyField("Produto")
     
