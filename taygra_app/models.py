@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Produto(models.Model):
     nome = models.CharField(max_length=100)
     imagem_url = models.CharField(max_length=100, blank=True, null=True)
-    preco = models.DecimalField(decimal_places=2)
+    preco = models.FloatField()
     desconto = models.DecimalField(decimal_places=2, max_digits=5, default=0) # falta verificar negativo
     descricao = models.CharField(max_length=255)
     detalhes = models.TextField()
@@ -17,7 +17,13 @@ class Produto(models.Model):
     fk_tamanho = models.ForeignKey("Tamanho", on_delete=models.CASCADE, blank=True, null=True)
     
     def __str__(self):
-        return self.nome
+        return self.nome + " - " + self.fk_cor.nome + " - " + self.fk_tamanho.valor
+    
+    def save(self, *args, **kwargs):
+        if self.desconto < 0:
+            self.desconto = 0
+        self.preco = round(self.preco, 2)
+        return super().save(*args, **kwargs)
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=100)
@@ -46,7 +52,7 @@ class Comentario(models.Model):
     
     
     def __str__(self):
-        return self.autor + " - " + self.avaliacao + "/5"
+        return self.autor + " - " + str(self.avaliacao) + "/5"
     
 class Oferta(models.Model):
     nome = models.CharField(max_length=100)
