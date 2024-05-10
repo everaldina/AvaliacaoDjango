@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block conteudo %}
+{% load static%}
+<div class="container m-0">
+    <div class="row">
+        <div class="col-2 border min-vh-100 ml-2 d-flex">
+            <ul class="nav nav-pills text-center mt-3 flex-column flex-column flex-grow-1">
+                {% for key, value in lista_form.items%}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.kwargs.nome_form == key %} active {% endif %}" 
+                            href="{% url 'cadastro_form' key %}" aria-current="page" href="#">
+                            {{ value.nome }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-10 px-5 py-3">
+            {% block form %}
+                <h3 class="text-center mb-4"> <strong></strong> </h3>
+
+                <form action="{% url 'cadastro_form' request.resolver_match.kwargs.nome_form %}" method="post">
+                    {% csrf_token %}
+                    
+                    {% for campo in form %}
+                        <div class="mb-3">
+                            {{ campo }}
+                        </div>
+                        {% if campo.errors %}
+                            <div class="alert alert-danger">
+                                {% for error in campo.errors %}
+                                    <strong>{{ error|escape }}</strong>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% empty %}
+                    {% endfor %}
+            
+                    <button type="submit" class="btn bg-success text-white">Enviar</button>
+                </form>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

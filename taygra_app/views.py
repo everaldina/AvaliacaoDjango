@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from taygra_app.models import Oferta, Categoria, Produto
 from django.apps import apps
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from taygra_app.forms import return_form
 
 # Create your views here.
 
@@ -51,3 +54,34 @@ def produto(request, id_produto):
     }
     
     return render(request, 'produto.html', context)
+
+
+def cadastro(request):
+    return HttpResponseRedirect(reverse('cadastro_form'))
+
+def cadastro_form(request, nome_form):
+    form_list = {
+        'produto': {'nome': 'Produto', 'nome_plural': 'produtos'},
+        'categoria': {'nome': 'Categoria', 'nome_plural': 'categorias'},
+        'tamanho': {'nome': 'Tamanho', 'nome_plural': 'tamanhos'},
+        'cor': {'nome': 'Cor', 'nome_plural': 'cores'},
+        'comentario': {'nome': 'Comentario', 'nome_plural': 'comentarios'},
+        'oferta': {'nome': 'Oferta', 'nome_plural': 'ofertas'},
+        'carrinho_usuario': {'nome': 'Carrinho usuario', 'nome_plural': 'produto ao carrinho'},
+        
+    }
+    if request.method == "POST":
+        form = return_form(nome_form, request.POST)
+        if form and form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('formulario_nivel_formacao'))
+    else:
+        form = return_form(nome_form)
+
+    context = {
+        'form': form,
+        'lista_form': form_list,
+    }
+
+    return render(request, 'cadastro.html', context)
+
