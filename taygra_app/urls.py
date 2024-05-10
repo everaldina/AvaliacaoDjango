@@ -15,5 +15,8 @@ urlpatterns = [
     path('newuser/', views.newuser, name='newuser'),
     path('deluser/<id>', views.deluser, name='deluser'),
     path('editperfil/', views.editperfil, name='editperfil'),
+    path('categorias/<id_categoria>', views.categorias, name='categorias'),
+    path('cadastro/', views.cadastro, name='cadastro'),
+    path('cadastro/<nome_form>', views.cadastro_form, name='cadastro_form')
 
 ]

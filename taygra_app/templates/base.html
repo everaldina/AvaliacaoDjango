@@ -23,16 +23,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="">Home</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'home'%}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">Categorias</a>
+                <a class="nav-link" href="{% url 'categorias' 1%}">Categorias</a>
               </li>
-              {% comment %} <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link" href="{% url 'informacoes' %}">Informações</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'contato'%}">Contatos</a> {% endcomment %}
+                <a class="nav-link" href="{% url 'contato'%}">Contatos</a>
               </li>
             </ul>
 
@@ -42,33 +42,19 @@
       </nav>
     
 
-</header>
+    </header>
 
-<main >
-
-
-{% block conteudo %}
-
-{% endblock conteudo %}
-
-
-
-</main>
+    <main >
+      {% block conteudo %}
+      {% endblock conteudo %}
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-
     <footer class=" bg-body-tertiary text-center">
       <div class="text-center p-3" style="background-color: rgba(176, 159, 2, 0.05);">
         © 2024 Copyright
       </div>
     </footer>
- 
   </body>
-
-
-
-
-
 
 </html>
