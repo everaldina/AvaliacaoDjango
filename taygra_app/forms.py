@@ -18,8 +18,8 @@ class LoginForm (forms.ModelForm):
         widgets = {'password': PasswordInput()}
     def __init__ (self, *args , **kwargs):
         super().__init__(*args , **kwargs)
-        self.fields['username'].widget.attrs.update({'placeholder':'Login','class':'col form-control my-2 p-2'})
-        self.fields['password'].widget.attrs.update({'placeholder':'Senha','class':'col form-control my-2 p-2'})
+        self.fields['username'].widget.attrs.update({'class': 'form-control','placeholder':'Login',})
+        self.fields['password'].widget.attrs.update({'class': 'form-control','placeholder':'Senha',})
 
 class UserForm (forms.ModelForm):
     class Meta:

@@ -26,7 +26,21 @@ def login (request):
         user = authenticate(username=request.POST.get('username'),password=request.POST.get('password'))
         if user:
             auth_login(request, user = user)
+            return HttpResponseRedirect(reverse('home'))
+        form_login = LoginForm(request.POST)
+        context ={
+            'form_login': form_login,
+        }
+    else:
+        form_login = LoginForm()
+        context = {
+            'form_login': form_login,
+        }
+        return render(request, 'login.html', context=context)
+    
     return HttpResponseRedirect(reverse('home'))
+
+
 
 def logout (request):
     auth_logout(request)

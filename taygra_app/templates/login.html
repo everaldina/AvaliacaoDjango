@@ -14,13 +14,13 @@
                         {% csrf_token %}
 
                         <div class="form-group">
-                            <label for="{{ form.email.id_for_label }}">Usuario</label>
-                            {{ form.username }}
+                            <label for="{{ form.username.id_for_label }}">Usuario</label>
+                            {{ form_login.username }}
                         </div>
 
                         <div class="form-group">
-                            <label for="{{ form.senha.id_for_label }}">Senha</label>
-                            {{ form.senha }}
+                            <label for="{{ form.password.id_for_label }}">Senha</label>
+                            {{ form_login.password }}
                         </div>
 
                    

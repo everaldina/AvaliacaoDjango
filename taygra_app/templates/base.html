@@ -38,6 +38,13 @@
 
            
           </div>
+          <div>
+            {% if user.is_authenticated %}
+              <p>logado</p>
+            {% else %}
+              <p>logar</p>
+            {% endif %}
+          </div>
         </div>
       </nav>
     
