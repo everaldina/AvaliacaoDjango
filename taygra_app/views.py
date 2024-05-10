@@ -44,7 +44,7 @@ def login (request):
 
 def logout (request):
     auth_logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('home'))
 
 def newuser (request):
     if request.method == 'POST':
