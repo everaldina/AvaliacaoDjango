@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<div class="container-fluid">
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner" >
+      <div class="carousel-item active" >
+  
+        {% load static %}
+        <img class="w-100 object-fit: scale-down;" src="{% static '1.jpg' %}" >
+      </div>  
+      <div class="carousel-item">
+       
+        <img class="w-100 object-fit: scale-down;" src="{% static '2.jpg' %}" >
+      </div>
+      <div class="carousel-item">
+        
+        <img class="w-100 object-fit: scale-down;" src="{% static '3.jpg' %}" >
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  
+</div>
+
+</div>
+  
+
+<div class="container mx-auto">
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
+
+{% for ref in produtos %}
+
+<div class="col mb-4">
+<div class="card h-100" >
+  <div class="card-body">
+    <h5 class="card-title">Categorias</h5>
+    <p> Nome:  {{ref.nome}} </p>
+      {% load static %}
+        <img class="w-100 object-fit-contain"  src="{% static ref.imagem  %}" >
+    
+  <h5>Por: R$ {{ref.valor}}</h5>
+
+  <div class="d-grid gap-2">
+    <a href="{% url 'produto' ref.id %}" class="btn btn-primary ">Detalhes</a> </div>
+  </div>
+</div>
+</div>
+{% empty %}
+<div>Sem produtos</div>
+
+{% endfor %}
+</div>
+</div>
+{% endblock conteudo %}
